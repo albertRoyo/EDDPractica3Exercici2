@@ -62,7 +62,3 @@ void BinarySearchTree<Element>::printPostorder(TreeNode<Element>* p) const{}
 
 template <class Element>
 void BinarySearchTree<Element>::printInorder(TreeNode<Element>* p) const{}
-
-template <class Element>
-int BinarySearchTree<Element>::getHeight(TreeNode<Element>* p){}
-

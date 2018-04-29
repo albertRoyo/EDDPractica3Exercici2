@@ -79,9 +79,13 @@ template <class Element>
 void BinarySearchTree<Element>::insert(const Element& element){
     TreeNode<Element>* newNode = new TreeNode<Element>(element);
     if (element <= this->root()->getData()){
-        this->insert(element, this->root()->getLeft());
+        if (this->root()->hasLeft()){this->insert(element, this->root()->getLeft());}
+        else{this->root()->setLeft(newNode);newNode->setParent(this->root());}
     }
-    else if (element > this->root()->getData()){this->inser(element, this->root()->getRight());}
+    else {
+        if (this->root()->hasRight()){this->insert(element, this->root()->getRight());}
+        else{this->root()->setRight(newNode);newNode->setParent(this->root());}
+    }
 }
 
 template <class Element>

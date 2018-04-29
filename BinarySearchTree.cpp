@@ -35,16 +35,30 @@ bool BinarySearchTree<Element>::search(const Element& element){
 }
 
 template <class Element>
-void BinarySearchTree<Element>::printInorder() const{/***/}
+void BinarySearchTree<Element>::printInorder() const{/***/
+    if (this->root()->hasLeft()){this->printInorder(this->root()->getLeft());}
+    cout << this->root()->getData() << " ";
+    if (this->root()->hasRight()){this->printInorder(this->root()->getRight());}
+}
 
 template <class Element>
-void BinarySearchTree<Element>::printPostorder() const{/***/}
+void BinarySearchTree<Element>::printPostorder() const{/***/
+    if (this->root()->hasLeft()){this->printPostorder(this->root()->getLeft());}
+    if (this->root()->hasRight()){this->printPostorder(this->root()->getRight());}
+    cout << this->root()->getData() << " ";
+}
 
 template <class Element>
-void BinarySearchTree<Element>::printPreorder() const{/***/}
+void BinarySearchTree<Element>::printPreorder() const{/***/
+    cout << this->root()->getData() << " ";
+    if (this->root()->hasLeft()){this->printPreorder(this->root()->getLeft());}
+    if (this->root()->hasRight()){this->printPreorder(this->root()->getRight());}
+}
 
 template <class Element>
-int BinarySearchTree<Element>::getHeight() const{}
+int BinarySearchTree<Element>::getHeight() const{
+    if 
+}
 
 template <class Element>
 int BinarySearchTree<Element>::getHeight(TreeNode<Element>* p){}
@@ -59,13 +73,25 @@ template <class Element>
 int BinarySearchTree<Element>::size(TreeNode<Element>* p) const{}
 
 template <class Element>
-void BinarySearchTree<Element>::printPreorder(TreeNode<Element>* p) const{}
+void BinarySearchTree<Element>::printPreorder(TreeNode<Element>* p) const{
+    cout << this->p->getData() << " ";
+    if (this->p->hasLeft()){this->printPreorder(this->p->getLeft());}
+    if (this->p->hasRight()){this->printPreorder(this->p->getLeft());}
+}
 
 template <class Element>
-void BinarySearchTree<Element>::printPostorder(TreeNode<Element>* p) const{}
+void BinarySearchTree<Element>::printPostorder(TreeNode<Element>* p) const{
+    if (this->p->hasRight()){this->printPostorder(this->p->getRight());}
+    if (this->p->hasLeft()){this->printPostorder(this->p->getLeft());}
+    cout << this->p->getData() << " ";
+}
 
 template <class Element>
-void BinarySearchTree<Element>::printInorder(TreeNode<Element>* p) const{}
+void BinarySearchTree<Element>::printInorder(TreeNode<Element>* p) const{
+    if (this->p->hasLeft()){this->printInorder(this->p->getLeft());}
+    cout << this->p->getData() << " ";
+    if (this->p->hasRight()){this->printInorder(this->p->getRight());}
+}
 
 //Añadido
 template <class Element>

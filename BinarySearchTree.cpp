@@ -76,7 +76,13 @@ int BinarySearchTree<Element>::getHeight(TreeNode<Element>* p){
 }
 
 template <class Element>
-void BinarySearchTree<Element>::insert(const Element& element){}
+void BinarySearchTree<Element>::insert(const Element& element){
+    TreeNode<Element>* newNode = new TreeNode<Element>(element);
+    if (element <= this->root()->getData()){
+        this->insert(element, this->root()->getLeft());
+    }
+    else if (element > this->root()->getData()){this->inser(element, this->root()->getRight());}
+}
 
 template <class Element>
 void BinarySearchTree<Element>::postDelete(TreeNode<Element>* p){}

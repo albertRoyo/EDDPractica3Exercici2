@@ -32,6 +32,7 @@ private:
 
     //Añadido
     bool search(const Element& element, TreeNode<Element>* node);
+    void insert(const Element& element, TreeNode<Element>* p);
     
     TreeNode<Element>* proot;
     

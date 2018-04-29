@@ -95,7 +95,22 @@ void BinarySearchTree<Element>::insert(const Element& element){
 }
 
 template <class Element>
-void BinarySearchTree<Element>::postDelete(TreeNode<Element>* p){}
+void BinarySearchTree<Element>::postDelete(TreeNode<Element>* p){
+    if (p->isExternal()){p->setParent(nullptr);delete p;}
+    else if ((p->hasLeft()) && !(p->hasRight())){
+        if(p->getParent()->getLeft() == p){
+            p->getParent()->setLeft(p->getLeft());
+            p->getLeft()->setParent(p->getParent());
+            delete p;
+        }else if(p->getParent()->getRight() == p){
+            p->getParent()->setRight(p->getLeft());
+            p->getLeft()->setParent(p->getParent());
+            delete p;
+        }
+    }else if (())
+    }
+
+}
 
 template <class Element>
 int BinarySearchTree<Element>::size(TreeNode<Element>* p) const{}

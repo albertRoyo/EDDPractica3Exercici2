@@ -57,11 +57,23 @@ void BinarySearchTree<Element>::printPreorder() const{/***/
 
 template <class Element>
 int BinarySearchTree<Element>::getHeight() const{
-    if 
+    if (this->root()->isExternal()){return 0;}
+    else {
+        int h = 0;
+        h = max(h, this->getHeight(this->root()->getLeft()), this->getHeight(this->root()->getRight()));
+        return (h+1);
+    }
 }
 
 template <class Element>
-int BinarySearchTree<Element>::getHeight(TreeNode<Element>* p){}
+int BinarySearchTree<Element>::getHeight(TreeNode<Element>* p){
+    if (this->p->isExternal()){return 0;}
+    else{
+        int h = 0;
+        h = max(h, this->getHeight(this->p->getLeft(), this->p->getRight()));
+        return (h+1);
+    }
+}
 
 template <class Element>
 void BinarySearchTree<Element>::insert(const Element& element){}

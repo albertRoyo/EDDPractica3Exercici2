@@ -29,6 +29,9 @@ private:
     void printPostorder(TreeNode<Element>* p) const;
     void printInorder(TreeNode<Element>* p) const;
     int getHeight(TreeNode<Element>* p);
+
+    //Añadido
+    bool search(const Element& element, TreeNode<Element>* node);
     
     TreeNode<Element>* proot;
     

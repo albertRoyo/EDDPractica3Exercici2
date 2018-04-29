@@ -1,4 +1,5 @@
 #include "BinarySearchTree.h"
+#include "TreeNode.h"
 
 template <class Element>
 BinarySearchTree<Element>::BinarySearchTree() {this->proot = nullptr;}
@@ -27,7 +28,10 @@ TreeNode<Element>* BinarySearchTree<Element>::root() {return this->proot;}
 
 template <class Element>
 bool BinarySearchTree<Element>::search(const Element& element){
-    //
+    if (element == this->root()->getData()){return true;}
+    else if ((element < this->root()->getData()) && (this->root()->hasLeft())){return this->search(element, this->root()->getLeft());}
+    else if ((element > this->root()->getData()) && (this->root()->hasLeft())){return this->search(element, this->root()->getRight());}
+    else {return false;}
 }
 
 template <class Element>
@@ -62,3 +66,12 @@ void BinarySearchTree<Element>::printPostorder(TreeNode<Element>* p) const{}
 
 template <class Element>
 void BinarySearchTree<Element>::printInorder(TreeNode<Element>* p) const{}
+
+//Añadido
+template <class Element>
+bool BinarySearchTree<Element>::search(const Element& element, TreeNode<Element>* node){
+    if (element == node->getData()){return true;}
+    else if ((element < node->getData()) && (node->hasLeft())){return this->search(element, node->getLeft());}
+    else if ((element > node->getData()) && (node->hasRight())){return this->search(element, node->getRight());}
+    else {return false;}
+}

@@ -77,14 +77,20 @@ int BinarySearchTree<Element>::getHeight(TreeNode<Element>* p){
 
 template <class Element>
 void BinarySearchTree<Element>::insert(const Element& element){
-    TreeNode<Element>* newNode = new TreeNode<Element>(element);
     if (element <= this->root()->getData()){
         if (this->root()->hasLeft()){this->insert(element, this->root()->getLeft());}
-        else{this->root()->setLeft(newNode);newNode->setParent(this->root());}
-    }
-    else {
+        else{
+            TreeNode<Element>* newNode = new TreeNode<Element>(element);
+            this->root()->setLeft(newNode);
+            newNode->setParent(this->root());
+        }
+    } else {
         if (this->root()->hasRight()){this->insert(element, this->root()->getRight());}
-        else{this->root()->setRight(newNode);newNode->setParent(this->root());}
+        else{
+            TreeNode<Element>* newNode = new TreeNode<Element>(element);
+            this->root()->setRight(newNode);
+            newNode->setParent(this->root());
+        }
     }
 }
 
@@ -122,4 +128,23 @@ bool BinarySearchTree<Element>::search(const Element& element, TreeNode<Element>
     else if ((element < node->getData()) && (node->hasLeft())){return this->search(element, node->getLeft());}
     else if ((element > node->getData()) && (node->hasRight())){return this->search(element, node->getRight());}
     else {return false;}
+}
+
+template <class Element>
+void BinarySearchTree<Element>::insert(const Element& element, TreeNode<Element>* node){
+    if (element <= node->getData()){
+        if (node->hasLeft()){this->insert(element, node->getLeft());}
+        else{
+            TreeNode<Element>* newNode = new TreeNode<Element>(element);
+            node->setLeft(newNode);
+            newNode->setParent(node);
+        }
+    }else{
+        if (node->hasRight()){this->insert(element, node->getRight());}
+        else{
+            TreeNode<Element>* newNode = new TreeNode<Element>(element);
+            node->setRight(newNode);
+            newNode->setParent(node);
+        }
+    }
 }

@@ -1,5 +1,8 @@
+#include <iostream>
 #include "BinarySearchTree.h"
 #include "TreeNode.h"
+
+using namespace std;
 
 template <class Element>
 BinarySearchTree<Element>::BinarySearchTree() {this->proot = nullptr;}
@@ -26,7 +29,7 @@ template <class Element>
 bool BinarySearchTree<Element>::isEmpty() const{return (this->root() == nullptr);}
 
 template <class Element>
-TreeNode<Element>* BinarySearchTree<Element>::root() {return this->proot;}
+TreeNode<Element>* BinarySearchTree<Element>::root() const{return this->proot;}
 
 template <class Element>
 bool BinarySearchTree<Element>::search(const Element& element){
@@ -38,9 +41,9 @@ bool BinarySearchTree<Element>::search(const Element& element){
 
 template <class Element>
 void BinarySearchTree<Element>::printInorder() const{/***/
-    if (this->root()->hasLeft()){this->printInorder(this->root()->getLeft());}
+    if (this->root()->hasLeft()){printInorder(this->root()->getLeft());}
     cout << this->root()->getData() << " ";
-    if (this->root()->hasRight()){this->printInorder(this->root()->getRight());}
+    if (this->root()->hasRight()){printInorder(this->root()->getRight());}
 }
 
 template <class Element>
@@ -79,7 +82,10 @@ int BinarySearchTree<Element>::getHeight(TreeNode<Element>* p){
 
 template <class Element>
 void BinarySearchTree<Element>::insert(const Element& element){
-    if (element <= this->root()->getData()){
+    if (this->root() == nullptr){
+        TreeNode<Element>* newNode = new TreeNode<Element>(element);
+        this->proot = newNode;
+    } else if (element <= this->root()->getData()){
         if (this->root()->hasLeft()){this->insert(element, this->root()->getLeft());}
         else{
             TreeNode<Element>* newNode = new TreeNode<Element>(element);
@@ -125,7 +131,7 @@ void BinarySearchTree<Element>::postDelete(TreeNode<Element>* p){
             succesor = succesor->getLeft();
         }
         p->setData(succesor->getData());
-        succesor->getParent()
+        succesor->getParent();
     }
 
 }

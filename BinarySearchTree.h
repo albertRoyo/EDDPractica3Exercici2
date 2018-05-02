@@ -13,7 +13,7 @@ public:
     
     int size() const;
     bool isEmpty() const;
-    TreeNode<Element>* root();
+    TreeNode<Element>* root() const; //añadido el const
     bool search(const Element& element);
     void printInorder() const;
     void printPreorder() const;
@@ -29,10 +29,8 @@ private:
     void printPostorder(TreeNode<Element>* p) const;
     void printInorder(TreeNode<Element>* p) const;
     int getHeight(TreeNode<Element>* p);
-
-    //Añadido
     bool search(const Element& element, TreeNode<Element>* node);
-    void insert(const Element& element, TreeNode<Element>* p);
+    void insert(const Element& element, TreeNode<Element>* node);
     
     TreeNode<Element>* proot;
     

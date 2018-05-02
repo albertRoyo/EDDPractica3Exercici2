@@ -12,6 +12,8 @@ BinarySearchTree<Element>::~BinarySearchTree() {}
 
 template <class Element>
 int BinarySearchTree<Element>::size() const{
+    //Reemplazar por un contador en BinaryTree que guarde cuantos nodos existen.
+    //Se actualiza cuando se inserta o elimina un nodo
     int size = 1;
     int sizeLeft = 0;
     int sizeRight = 0;
@@ -96,7 +98,7 @@ void BinarySearchTree<Element>::insert(const Element& element){
 
 template <class Element>
 void BinarySearchTree<Element>::postDelete(TreeNode<Element>* p){
-    if (p->isExternal()){p->setParent(nullptr);delete p;}
+    if ((p->hasLeft()) && (p->hasRight())){p->setParent(nullptr);delete p;}
     else if ((p->hasLeft()) && !(p->hasRight())){
         if(p->getParent()->getLeft() == p){
             p->getParent()->setLeft(p->getLeft());
@@ -107,7 +109,23 @@ void BinarySearchTree<Element>::postDelete(TreeNode<Element>* p){
             p->getLeft()->setParent(p->getParent());
             delete p;
         }
-    }else if (())
+    }else if ((p->hasRight()) && !(p->hasLeft())){
+        if(p->getParent()->getLeft() == p){
+            p->getParent()->setLeft(p->getRight());
+            p->getRight()->setParent(p->getParent());
+            delete p;
+        }else if(p->getParent()->getRight() == p){
+            p->getParent()->setRight(p->getRight());
+            p->getRight()->setParent(p->getParent());
+            delete p;
+        }
+    }else{
+        TreeNode<Element> succesor = p->getRight();
+        while (succesor->hasLeft()){
+            succesor = succesor->getLeft();
+        }
+        p->setData(succesor->getData());
+        succesor->getParent()
     }
 
 }

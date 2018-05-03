@@ -44,7 +44,7 @@ int main() {
     
     cout << "Alçada:" << tree->getHeight() << endl;// alçada del arbre
     
-    //(comptant que una fulla té alçada 1)
+    //(comptant que una fulla té alçada 0)
     
     return 0;
 }

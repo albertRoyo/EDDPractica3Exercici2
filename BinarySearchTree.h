@@ -33,8 +33,7 @@ private:
     void insert(const Element& element, TreeNode<Element>* node);
     
     TreeNode<Element>* proot;
-    
+    int contadorNodes;
 };
 
 #endif /* BINARYSEARCHTREE_H */
-

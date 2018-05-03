@@ -29,10 +29,11 @@ int main() {
     tree->printPostorder();
     tree->printPreorder();
     
-    //cout << tree->size() << "\t" << endl; // size y height estan mal, height tiene un fallo en tiempo de ejecucion
+    cout << tree->size() << "\t" << endl; // size y height estan mal, height tiene un fallo en tiempo de ejecucion
     cout << tree->search(23) << endl;
     cout << tree->search(123) << endl; // los search funcionan bien
     cout << tree->search(145) << endl;
     
     return 0;
 }
+

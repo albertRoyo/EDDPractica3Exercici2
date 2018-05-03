@@ -17,12 +17,13 @@ template <class Element>
 int BinarySearchTree<Element>::size() const{
     //Reemplazar por un contador en BinaryTree que guarde cuantos nodos existen.
     //Se actualiza cuando se inserta o elimina un nodo
-    int size = 1;
-    int sizeLeft = 0;
-    int sizeRight = 0;
-    if (this->root()->hasLeft()){sizeLeft = this->size(this->root()->getLeft());}
-    if (this->root()->hasRight()){sizeRight = this->size(this->root()->getRight());}
-    return (size+sizeLeft+sizeRight);
+//    int size = 1;
+//    int sizeLeft = 0;
+//    int sizeRight = 0;
+//    if (this->root()->hasLeft()){sizeLeft = this->size(this->root()->getLeft());}
+//    if (this->root()->hasRight()){sizeRight = this->size(this->root()->getRight());}
+//    return (size+sizeLeft+sizeRight);
+    return this->contadorNodes; //O(1)
 }
 
 template <class Element>
@@ -88,12 +89,14 @@ void BinarySearchTree<Element>::insert(const Element& element){
     if (this->root() == nullptr){
         TreeNode<Element>* newNode = new TreeNode<Element>(element);
         this->proot = newNode;
+        this->contadorNodes++;
     } else if (element <= this->root()->getData()){
         if (this->root()->hasLeft()){this->insert(element, this->root()->getLeft());}
         else{
             TreeNode<Element>* newNode = new TreeNode<Element>(element);
             this->root()->setLeft(newNode);
             newNode->setParent(this->root());
+            this->contadorNodes++;
         }
     } else {
         if (this->root()->hasRight()){this->insert(element, this->root()->getRight());}
@@ -101,6 +104,7 @@ void BinarySearchTree<Element>::insert(const Element& element){
             TreeNode<Element>* newNode = new TreeNode<Element>(element);
             this->root()->setRight(newNode);
             newNode->setParent(this->root());
+            this->contadorNodes++;
         }
     }
 }
@@ -180,6 +184,7 @@ void BinarySearchTree<Element>::insert(const Element& element, TreeNode<Element>
             TreeNode<Element>* newNode = new TreeNode<Element>(element);
             node->setLeft(newNode);
             newNode->setParent(node);
+            this->contadorNodes++;
         }
     }else{
         if (node->hasRight()){this->insert(element, node->getRight());}
@@ -187,6 +192,7 @@ void BinarySearchTree<Element>::insert(const Element& element, TreeNode<Element>
             TreeNode<Element>* newNode = new TreeNode<Element>(element);
             node->setRight(newNode);
             newNode->setParent(node);
+            this->contadorNodes++;
         }
     }
 }

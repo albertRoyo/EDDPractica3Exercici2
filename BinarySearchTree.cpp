@@ -41,48 +41,31 @@ bool BinarySearchTree<Element>::search(const Element& element){
 }
 
 template <class Element>
-void BinarySearchTree<Element>::printInorder() const{/***/
-    if (this->root()->hasLeft()){printInorder(this->root()->getLeft());}
-    cout << this->root()->getData() << " ";
-    if (this->root()->hasRight()){printInorder(this->root()->getRight());}
-    cout << endl;
-}
-
-template <class Element>
-void BinarySearchTree<Element>::printPostorder() const{/***/
-    if (this->root()->hasLeft()){this->printPostorder(this->root()->getLeft());}
-    if (this->root()->hasRight()){this->printPostorder(this->root()->getRight());}
-    cout << this->root()->getData() << " ";
-    cout << endl;
-}
-
-template <class Element>
-void BinarySearchTree<Element>::printPreorder() const{/***/
-    cout << this->root()->getData() << " ";
-    if (this->root()->hasLeft()){this->printPreorder(this->root()->getLeft());}
-    if (this->root()->hasRight()){this->printPreorder(this->root()->getRight());}
-    cout << endl;
-}
-
-template <class Element>
-int BinarySearchTree<Element>::getHeight() const{
-    if (this->root()->isExternal()){return 0;}
+int BinarySearchTree<Element>::getHeight(){
+    getHeight(this->root());
+    /*
+    //Segona opció
+    TreeNode<Element>* arrel = this->root();
+    if (arrel->isExternal()){return 1;}
     else {
-        int h = 0;
-        h = max(h, this->getHeight(this->root()->getLeft()), this->getHeight(this->root()->getRight()));
-        return (h+1);
+        return max(this->getHeight(arrel->getLeft()), this->getHeight(arrel->getRight())) + 1;
     }
+    */
 }
-
+/*
+    No estic segur del tot si getHeight() és la funcio auxiliar pública per poder 
+cridar a la funció privada getHeight(node)(així ho he deixat) o una funció que retorna l'alçada de 
+tot l'arbre(i no la d'un dode en concret com getHeight(node)).
+*/
 template <class Element>
 int BinarySearchTree<Element>::getHeight(TreeNode<Element>* node){
-    if (node->isExternal()){return 0;}
-    else{
-        int h = 0;
-        h = max(h, this->getHeight(node->getLeft(), node->getRight()));
-        return (h+1);
+    TreeNode<Element>* arrel = node;
+    if (node->isExternal()){return 1;}
+    else {
+        return max(this->getHeight(node->getLeft()), this->getHeight(node->getRight())) + 1;
     }
 }
+
 
 template <class Element>
 void BinarySearchTree<Element>::insert(const Element& element){
@@ -146,25 +129,59 @@ void BinarySearchTree<Element>::postDelete(TreeNode<Element>* p){
 template <class Element>
 int BinarySearchTree<Element>::size(TreeNode<Element>* p) const{}
 
+
+//Las he ficat totse juntes per treballar millor
+template <class Element>
+void BinarySearchTree<Element>::printPreorder() const{/***/
+    printPreorder(this->root());
+    /*
+    cout << this->root()->getData() << " ";
+    if (this->root()->hasLeft()){this->printPreorder(this->root()->getLeft());}
+    if (this->root()->hasRight()){this->printPreorder(this->root()->getRight());}
+    */
+    cout << endl;
+}
 template <class Element>
 void BinarySearchTree<Element>::printPreorder(TreeNode<Element>* p) const{
     cout << p->getData() << " ";
     if (p->hasLeft()){this->printPreorder(p->getLeft());}
-    if (p->hasRight()){this->printPreorder(p->getLeft());}
+    if (p->hasRight()){this->printPreorder(p->getRight());}
 }
+
 
 template <class Element>
-void BinarySearchTree<Element>::printPostorder(TreeNode<Element>* p) const{
-    if (p->hasRight()){this->printPostorder(p->getRight());}
-    if (p->hasLeft()){this->printPostorder(p->getLeft());}
-    cout << p->getData() << " ";
+void BinarySearchTree<Element>::printInorder() const{
+    printInorder(this->root());
+    /*
+    if (this->root()->hasLeft()){printInorder(this->root()->getLeft());}
+    cout << this->root()->getData() << " ";
+    if (this->root()->hasRight()){printInorder(this->root()->getRight());}
+    */
+    cout << endl;
 }
-
 template <class Element>
 void BinarySearchTree<Element>::printInorder(TreeNode<Element>* p) const{
     if (p->hasLeft()){this->printInorder(p->getLeft());}
     cout << p->getData() << " ";
     if (p->hasRight()){this->printInorder(p->getRight());}
+}
+
+
+template <class Element>
+void BinarySearchTree<Element>::printPostorder() const{/***/
+    printPostorder(this->root());
+    /*
+    if (this->root()->hasLeft()){this->printPostorder(this->root()->getLeft());}
+    if (this->root()->hasRight()){this->printPostorder(this->root()->getRight());}
+    cout << this->root()->getData() << " ";
+    */
+    cout << endl;
+}
+template <class Element>
+void BinarySearchTree<Element>::printPostorder(TreeNode<Element>* p) const{
+    if (p->hasRight()){this->printPostorder(p->getLeft());}
+    if (p->hasLeft()){this->printPostorder(p->getRight());}
+    cout << p->getData() << " ";
 }
 
 //Añadido ////////////////////////////////////////////////////////////////////////////////////////////////////

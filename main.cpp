@@ -6,6 +6,11 @@
 #include "TreeNode.cpp"
 
 using namespace std;
+/*
+g++ -std=c++11 $(ls *.cpp) && ./a.out
+g++ -std=c++11 -c BinarySearchTree.cpp
+g++ -std=c++11 -c TreeNode.cpp
+g++ -std=c++11 -o main.exe main.o TreeNode.o BinarySearchTree.o*/
 
 int main() {
     BinarySearchTree<int>* tree = new BinarySearchTree<int>(); //constructor ok
@@ -23,17 +28,23 @@ int main() {
     cout << "    " << tree->root()->getLeft()->getRight()->getData();
     cout << "\t     " << tree->root()->getRight()->getLeft()->getData();
     cout << "    " << tree->root()->getRight()->getRight()->getData() << endl;
+    cout << endl;
     
-    //tree->printPostorder(); //Todos los prints estan mal
+    //ja funcionan tots, era simplement canviar alguns left per right
+    cout << "Preordre, inordre i postordre:" << endl;
+    tree->printPreorder();
     tree->printInorder();
     tree->printPostorder();
-    tree->printPreorder();
     
-    cout << tree->size() << "\t" << endl; // size y height estan mal, height tiene un fallo en tiempo de ejecucion
+    cout << "Mida: " << tree->size() << endl;
+    cout << "Búsquedes:" << endl;
     cout << tree->search(23) << endl;
     cout << tree->search(123) << endl; // los search funcionan bien
     cout << tree->search(145) << endl;
     
+    cout << "Alçada:" << tree->getHeight() << endl;// alçada del arbre
+    
+    //(comptant que una fulla té alçada 1)
+    
     return 0;
 }
-

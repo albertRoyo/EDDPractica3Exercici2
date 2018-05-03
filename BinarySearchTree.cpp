@@ -60,7 +60,7 @@ tot l'arbre(i no la d'un dode en concret com getHeight(node)).
 template <class Element>
 int BinarySearchTree<Element>::getHeight(TreeNode<Element>* node){
     TreeNode<Element>* arrel = node;
-    if (node->isExternal()){return 1;}
+    if (node->isExternal()){return 0;}
     else {
         return max(this->getHeight(node->getLeft()), this->getHeight(node->getRight())) + 1;
     }

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 
 #include "BinarySearchTree.h"
 #include "BinarySearchTree.cpp"
@@ -6,22 +7,17 @@
 #include "TreeNode.cpp"
 
 using namespace std;
-/*
-g++ -std=c++11 $(ls *.cpp) && ./a.out
-g++ -std=c++11 -c BinarySearchTree.cpp
-g++ -std=c++11 -c TreeNode.cpp
-g++ -std=c++11 -o main.exe main.o TreeNode.o BinarySearchTree.o*/
 
 int main() {
-    BinarySearchTree<int>* tree = new BinarySearchTree<int>(); //constructor ok
-    tree->insert(54);
-    tree->insert(23);
-    tree->insert(68); // los inserts funcionan bien
-    tree->insert(10);
-    tree->insert(34);
-    tree->insert(57);
-    tree->insert(123);
+    BinarySearchTree<int>* tree = new BinarySearchTree<int>();
+    cout << "Arbre binari creat." << endl;
+    vector<int> dades = {54, 23, 68, 10, 34, 57, 123};
+    for (int i=0; i<dades.size(); ++i){
+        tree->insert(dades[i]);
+        cout << "Inserta a l’arbre element " << dades[i] << endl;
+    }
     
+    //Mostrem el arbre gràficament
     cout << "\t\t" << tree->root()->getData() << endl;
     cout << "\t" << tree->root()->getLeft()->getData() << "\t\t" << tree->root()->getRight()->getData() << endl;
     cout << "    " << tree->root()->getLeft()->getLeft()->getData();
@@ -30,11 +26,13 @@ int main() {
     cout << "    " << tree->root()->getRight()->getRight()->getData() << endl;
     cout << endl;
     
-    //ja funcionan tots, era simplement canviar alguns left per right
-    cout << "Preordre, inordre i postordre:" << endl;
+    BinarySearchTree<int>* treeCopy = new BinarySearchTree<int>(tree);// em peta aquí
+    
+    //Imprimim l'arbre en els diferents ordres
     tree->printPreorder();
     tree->printInorder();
     tree->printPostorder();
+
     
     cout << "Mida: " << tree->size() << endl;
     cout << "Búsquedes:" << endl;
@@ -44,7 +42,8 @@ int main() {
     
     cout << "Alçada:" << tree->getHeight() << endl;// alçada del arbre
     
-    //(comptant que una fulla té alçada 0)
     
     return 0;
 }
+
+

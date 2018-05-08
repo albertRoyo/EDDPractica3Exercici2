@@ -8,7 +8,8 @@ class BinarySearchTree {
 public:
     
     BinarySearchTree();
-    BinarySearchTree(const BinarySearchTree& orig);
+    BinarySearchTree(const BinarySearchTree* orig);
+    void copy(TreeNode<Element>* dest, const TreeNode<Element>* orig);
     virtual ~BinarySearchTree();
     
     int size() const;
@@ -18,9 +19,9 @@ public:
     void printInorder() const;
     void printPreorder() const;
     void printPostorder() const;
-    int getHeight() const;
+    int getHeight();
     void insert(const Element& element);
-    
+
 private:
     
     void postDelete(TreeNode<Element>* p);
@@ -31,9 +32,10 @@ private:
     int getHeight(TreeNode<Element>* p);
     bool search(const Element& element, TreeNode<Element>* node);
     void insert(const Element& element, TreeNode<Element>* node);
-    
-    TreeNode<Element>* proot;
     int contadorNodes;
+    TreeNode<Element>* proot;
+    
 };
 
 #endif /* BINARYSEARCHTREE_H */
+

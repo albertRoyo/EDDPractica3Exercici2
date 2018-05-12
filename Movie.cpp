@@ -1,37 +1,37 @@
 #include "Movie.h"
 
+#include <string>
 //Constructors
-Movie(){
-}
-Movie(int id, string titol, double rating){
+
+Movie::Movie(int id, string titol, float rating){
     this->id = id;
     this->titol = titol;
     this->rating = rating;
 }
 
 //Consultors
-int getId(){
+int Movie::getId(){
     return this->id;
 }
-string getTitol(){
+string Movie::getTitol(){
     return this->titol;
 }
-double getRating(){
+float Movie::getRating(){
     return this->rating;
 }
     
 //Modificadors
-void setId(int id){
+void Movie::setId(int id){
     this->id = id;
 }
-void setTitol(string titol){
+void Movie::setTitol(string titol){
     this->titol = titol;
 }
-void setRating(double rating){
+void Movie::setRating(float rating){
     this->rating = rating;
 }
     
-string toString(){
-    return this->getTitol()+toString(this->getRating());
+string Movie::toString(){
+    return this->getTitol()+to_string(this->getRating());
 }
     

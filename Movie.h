@@ -2,26 +2,31 @@
 #define MOVIE_H
 
 #include <string>
+using namespace std;
 
-class Movie {
-public:
+class Movie{
 
-    //Constructors
-    Movie();
-    Movie(int id, string titol, double rating);
-    
-    //Consultors
-    int getId();//potser no serà necessaria
-    string getTitol();
-    double getRating();
-    
-    //Modificadors
-    void setId(int id);
-    void setTitol(string titol);
-    void setRating(double rating);
-    
-    string toString();
-    
-}
+    public:
+        //Constructors
+        Movie(int id, string titol, float rating);
+        
+        //Consultors
+        int getId();//potser no serà necessaria
+        string getTitol();
+        float getRating();
+        
+        //Modificadors
+        void setId(int id);
+        void setTitol(string titol);
+        void setRating(float rating);
+        
+        string toString();
+        
+    private:
+        int id;
+        string titol;
+        float rating;
+        
+};
     
 #endif /* MOVIE_H */

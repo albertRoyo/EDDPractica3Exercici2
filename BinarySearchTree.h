@@ -3,6 +3,7 @@
 #include <vector>
 
 #include "TreeNode.h"
+#include "TreeNode.cpp"
 
 using namespace std;
 
@@ -19,11 +20,11 @@ public:
     bool isEmpty() const;
     TreeNode<Element>* root() const; //añadido el const
     TreeNode<Element>* search(const int key);//CAMBIAT: busquem l'element per la key, i no pel propi element
-    vector<Element> printInorder();//CAMBIAT: retornem un vector d'elements enlloc d'imprimir directament
+    vector<Element> printInorder();
     void printPreorder() const;
     void printPostorder() const;
     int getHeight();
-    void insert(const Element& element, const int key);//CAMBIAT: inserim l'element per la key, i no pel propi element
+    void insert(const Element& element, const int key);
 
 private:
     
@@ -42,3 +43,5 @@ private:
 };
 
 #endif /* BINARYSEARCHTREE_H */
+
+

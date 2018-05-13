@@ -8,6 +8,7 @@ Movie::Movie(int id, string titol, float rating){
     this->titol = titol;
     this->rating = rating;
 }
+Movie::~Movie(){}
 
 //Consultors
 int Movie::getId(){

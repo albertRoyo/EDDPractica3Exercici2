@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector> 
 #include "BinarySearchTree.h"
 #include "TreeNode.h"
 
@@ -60,25 +61,25 @@ void BinarySearchTree<Element>::printPreorder() const{
 //Funció privada
 template <class Element>
 void BinarySearchTree<Element>::printPreorder(TreeNode<Element>* p) const{
-    cout << p->getData() << " ";
+    cout << p->getValue() << " ";
     if (p->hasLeft()) this->printPreorder(p->getLeft());
     if (p->hasRight()) this->printPreorder(p->getRight());
 }
 
 //Funció pública
 template <class Element>
-void BinarySearchTree<Element>::printInorder() const{
-    cout << "Inordre = {";
-    printInorder(this->root());
-    cout << '}';
-    cout << endl;
+//retornme un vector d'Elements ja que des d'aquesta funció no podem cridar al toString de Movie
+vector<Element> BinarySearchTree<Element>::printInorder() {
+    vector<Element> v;
+    printInorder(this->root(), v);
+    return v;
 }
 //Funció privada
 template <class Element>
-void BinarySearchTree<Element>::printInorder(TreeNode<Element>* p) const{
-    if (p->hasLeft()){this->printInorder(p->getLeft());}
-    cout << p->getData() << " ";
-    if (p->hasRight()){this->printInorder(p->getRight());}
+void BinarySearchTree<Element>::printInorder(TreeNode<Element>* p, vector<Element>& v) {
+    if (p->hasLeft()){this->printInorder(p->getLeft(), v);}
+    v.insert(p->getValue());
+    if (p->hasRight()){this->printInorder(p->getRight(), v);}
 }
 
 //Funció pública
@@ -94,7 +95,7 @@ template <class Element>
 void BinarySearchTree<Element>::printPostorder(TreeNode<Element>* p) const{
     if (p->hasRight()){this->printPostorder(p->getLeft());}
     if (p->hasLeft()){this->printPostorder(p->getRight());}
-    cout << p->getData() << " ";
+    cout << p->getValue() << " ";
 }
 
 //Funció pública
@@ -112,50 +113,50 @@ int BinarySearchTree<Element>::getHeight(TreeNode<Element>* node){
     }
 }
 
-
+//CAMBIAT: Ara busquem per key i retornem un punter al node que contingui key, sinó està key, retornem un nullptr
 template <class Element>
-bool BinarySearchTree<Element>::search(const Element& element){
-    this->search(element, this->root());
+TreeNode<Element>* BinarySearchTree<Element>::search(const int key){
+    return this->search(key, this->root());
 }
 template <class Element>
-bool BinarySearchTree<Element>::search(const Element& element, TreeNode<Element>* node){
-    if (element == node->getData()){return true;}
-    else if ((element < node->getData()) && (node->hasLeft())){
-        return this->search(element, node->getLeft());
+TreeNode<Element>* BinarySearchTree<Element>::search(const int key, TreeNode<Element>* node){
+    if (key == node->getKey()){return &node;}
+    else if ((key < node->getKey()) && (node->hasLeft())){
+        return this->search(key, node->getLeft());
     }
-    else if ((element > node->getData()) && (node->hasRight())){
-        return this->search(element, node->getRight());
+    else if ((key > node->getKey()) && (node->hasRight())){
+        return this->search(key, node->getRight());
     }
-    else return false;
+    else return nullptr;
 }
 
 //Funció pública
 template <class Element>
-void BinarySearchTree<Element>::insert(const Element& element){
+void BinarySearchTree<Element>::insert(const Element& element, const int key){
     //Mirem el cas on el nostre arbre és completament vuit
     if (this->root() == nullptr){
-        TreeNode<Element>* newNode = new TreeNode<Element>(element);
+        TreeNode<Element>* newNode = new TreeNode<Element>(element, key);
         this->proot = newNode;
         this->contadorNodes++;
     }
     //sinò, cridem a la funció privada
-    else this->insert(element, this->root()); 
+    else this->insert(element, key, this->root()); 
 }
 //Funció privada
 template <class Element>
-void BinarySearchTree<Element>::insert(const Element& element, TreeNode<Element>* node){
-    if (element <= node->getData()){
-        if (node->hasLeft()) this->insert(element, node->getLeft());
+void BinarySearchTree<Element>::insert(const Element& element, const int key, TreeNode<Element>* node){
+    if (key <= node->getkey()){
+        if (node->hasLeft()) this->insert(element, key, node->getLeft());
         else {
-            TreeNode<Element>* newNode = new TreeNode<Element>(element);
+            TreeNode<Element>* newNode = new TreeNode<Element>(element, key);
             node->setLeft(newNode);
             newNode->setParent(node);
             this->contadorNodes++;
         }
     } else {
-        if (node->hasRight()) this->insert(element, node->getRight());
+        if (node->hasRight()) this->insert(element, key, node->getRight());
         else{
-            TreeNode<Element>* newNode = new TreeNode<Element>(element);
+            TreeNode<Element>* newNode = new TreeNode<Element>(element, key);
             node->setRight(newNode);
             newNode->setParent(node);
             this->contadorNodes++;

@@ -39,7 +39,7 @@ void BSTMovieFinder::appendMovies(string filename){
         
         //El rating serà la resta de la línea
         float rating = stof(linea.substr(pos2+2, linea.size()));
-        insertMovie(id,titol, rating);
+        this->insertMovie(id,titol, rating);
     }
     fitxer.close();
 }
@@ -66,3 +66,4 @@ float BSTMovieFinder::findRatingMovie(int movieID){
     Movie m = this->findMovie(movieID);
     return m.getRating();
 }
+

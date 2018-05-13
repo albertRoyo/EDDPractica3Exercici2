@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector> 
 #include "BinarySearchTree.h"
-#include "TreeNode.h"
+
 
 using namespace std;
 
@@ -120,7 +120,7 @@ TreeNode<Element>* BinarySearchTree<Element>::search(const int key){
 }
 template <class Element>
 TreeNode<Element>* BinarySearchTree<Element>::search(const int key, TreeNode<Element>* node){
-    if (key == node->getKey()){return &node;}
+    if (key == node->getKey()){return node;}
     else if ((key < node->getKey()) && (node->hasLeft())){
         return this->search(key, node->getLeft());
     }
@@ -145,7 +145,7 @@ void BinarySearchTree<Element>::insert(const Element& element, const int key){
 //Funció privada
 template <class Element>
 void BinarySearchTree<Element>::insert(const Element& element, const int key, TreeNode<Element>* node){
-    if (key <= node->getkey()){
+    if (key <= node->getKey()){
         if (node->hasLeft()) this->insert(element, key, node->getLeft());
         else {
             TreeNode<Element>* newNode = new TreeNode<Element>(element, key);

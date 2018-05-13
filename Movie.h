@@ -9,6 +9,7 @@ class Movie{
     public:
         //Constructors
         Movie(int id, string titol, float rating);
+        ~Movie();
         
         //Consultors
         int getId();//potser no serà necessaria

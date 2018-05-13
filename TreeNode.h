@@ -5,13 +5,13 @@ template <class Element>
 class TreeNode {
 public:
 
-    TreeNode(const Element& value, const int key);//CANVIAT
+    TreeNode(const Element& value, const int& key);
     virtual ~TreeNode();
     
-    const Element& getValue() const;//CANVIAT
-    const int& getKey() const; //NOU
-    void setValue(Element element); //CANVIAT
-    void setKey(int key);// NOU
+    const Element& getValue() const;
+    const int& getKey() const;
+    void setValue(Element element);
+    void setKey(int key);
     TreeNode* getRight() const;
     TreeNode* getLeft() const;
     TreeNode* getParent() const;
@@ -26,7 +26,7 @@ public:
     bool hasLeft() const;
 private:
     Element value;
-    int key; //NOU
+    int key;
     TreeNode* left;
     TreeNode* right;
     TreeNode* parent;

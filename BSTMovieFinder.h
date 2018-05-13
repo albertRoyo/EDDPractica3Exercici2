@@ -3,7 +3,9 @@
 #define BSTMOVIEFINDER_H
 
 #include "BinarySearchTree.h"
+#include "BinarySearchTree.cpp"
 #include "Movie.h"
+#include "Movie.cpp"
 #include <string>
 using namespace std;
 

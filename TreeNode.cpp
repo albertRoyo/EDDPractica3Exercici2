@@ -1,7 +1,7 @@
 #include "TreeNode.h"
 
 template <class Element>
-TreeNode<Element>::TreeNode(const Element& value, const int key){
+TreeNode<Element>::TreeNode(const Element& value, const int& key){
     this->value = value;
     this->key = key;
     this->left = nullptr;
